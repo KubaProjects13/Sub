@@ -1,0 +1,203 @@
+/* SubUI CSS - UI Design*/
+
+:root {
+    --SubUI-bg: #d1a65d;
+    --SubUI-primary: #45330b;
+    --SubUI-primary-shadow: #2e2204;
+    --SubUI-secondary: #9d710a;
+    --SubUI-secondary-shadow: #694b05;
+    --SubUI-text: aliceblue;
+    --SubUI-text-secondary: black;
+    --SubUI-radius: 18px;
+    --SubUI-bars: rgba(109, 85, 44, 0.7);
+    --SubUI-bars-outline: 0.5px solid rgba(0, 0, 0, 0.196);
+}
+
+/* Tvůj hlavní selektor zůstává stejný, jen přidáme vlastnosti proti zasekávání na mobilu */
+button, input, .widget, .image, .statItem {
+    padding: 10px 10px;
+    border-radius: var(--SubUI-radius);
+    appearance: none;
+    font-size: 16px;
+    background-color: var(--SubUI-primary);
+    color: var(--SubUI-text);
+    border: none;
+    box-shadow: 0 4px 0 var(--SubUI-primary-shadow); 
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    
+    touch-action: manipulation;        /* Zrychlí kliknutí na mobilu (odstraní 300ms prodlevu) */
+    -webkit-touch-callout: none;      /* Zakáže kontextové menu při dlouhém podržení */
+    user-select: none;                /* Zakáže označování textu uvnitř tlačítka */
+    -webkit-user-select: none;
+}
+
+button, input {
+    display: inline-block;
+}
+
+button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease; 
+}
+
+@media (hover: hover) {
+    button:hover {
+        filter: brightness(1.1);
+    }
+}
+
+button:active {
+    box-shadow: 0 0 0 #282828 !important;
+    transform: translateY(4px) !important;
+}
+
+.tr {
+    background-color: rgb(69, 51, 11, 0.7);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 4px 0 rgb(46, 34, 4, 0.7); 
+    width: 100%;
+}
+
+.disabled {
+    filter: brightness(0.7);
+    cursor: not-allowed;
+}
+
+button.disabled:active {
+    filter: brightness(0.7);
+    box-shadow: 0 4px 0 #282828 !important;
+    transform: none !important;
+}
+
+.disabled:hover {
+    filter: brightness(0.7);
+}
+
+input:hover {
+    filter: brightness(1.1);
+}
+
+input:focus {
+    outline: none;
+}
+
+h1 {
+    color: aliceblue;
+    font-size: 36px;
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+}
+
+.widget {
+    width: 100%;
+    display: flex;
+    gap: 8px; /* mezera mezi tlačítky */
+    padding: 0px;
+    padding-bottom: 10px;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    flex-direction: column;
+    height: fit-content;
+    text-align: center;
+}
+
+.widget .widget {
+    max-width: 100%;
+    background-color: var(--SubUI-secondary);
+    box-shadow: 0 4px 0 var(--SubUI-secondary-shadow);
+}
+
+/* Automatically resize any image inside a widget so it never overflows */
+.widget img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: calc(var(--SubUI-radius) - 4px);
+}
+
+.widget button {
+    background-color: var(--SubUI-secondary);
+    box-shadow: 0 4px 0 var(--SubUI-secondary-shadow);
+    margin: 0;
+    color: #000000;
+    width: 100%;
+    font-weight: bold;
+}
+
+.widget input {
+    background-color: var(--SubUI-secondary);
+    box-shadow: 0 4px 0 var(--SubUI-secondary-shadow);
+    margin: 0;
+    color: var(--SubUI-text);
+    width: 100%;
+    font-weight: bold;
+}
+
+.widget p {
+    color: var(--SubUI-text);
+}
+
+.widget input::placeholder {
+    color: #a9a9a9;
+    opacity: 0.7;
+}
+
+p {
+    color: var(--SubUI-text-secondary);
+    margin: 0;
+}
+
+h2 {
+    color: var(--SubUI-text);
+    margin: 0;
+}
+
+.divImg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.image {
+    height: 180px;
+    width: 100%;
+    margin-right: 0;
+    object-fit: cover;
+    display: block;
+    padding: 0;
+    transition: none;
+    flex: 1;
+    min-width: 0;      /* KLÍČOVÉ: Zabrání obrázku, aby si vynucoval svou původní šířku */
+    object-fit: cover; /* Tohle zajistí ten ořez (crop), o kterém píšeš */
+    flex: 1;           /* Rozdělí prostor rovnoměrně */
+}
+
+.widget .image {
+    background-color: var(--SubUI-primary);
+    box-shadow: 0 4px 0 var(--SubUI-primary-shadow);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.divWidth {
+    width: 100%;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    gap: 6px;
+}
+
+.divWidth .fullWidth {
+    height: 100%;
+}

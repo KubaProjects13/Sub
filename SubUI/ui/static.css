@@ -1,0 +1,254 @@
+/* SubUI CSS - Static Layout */
+
+body {
+    background-color: var(--SubUI-bg);
+    font-family: "Google Sans", sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    margin: 0;
+    overflow: hidden;
+}
+
+.hrefPage {
+    display: none;
+}
+
+.hrefPage.active {
+    height: 100dvh;
+    display: block;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0;
+    z-index: 1;
+    animation: fadeAnimation 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+.hrefPage[data-bottombar="show"] .content {
+    padding-bottom: calc(70px + env(safe-area-inset-bottom));
+}
+
+.hrefPage[data-topbar="none"] .content {
+    padding-top: 12px; 
+}
+
+@keyframes fadeAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+}
+
+.bottombar {
+    background-color: var(--SubUI-bars); 
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-top: var(--SubUI-bars-outline); 
+    height: auto;
+    min-height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    gap: 6px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.bottombar button {
+    white-space: nowrap;
+    flex: 1; 
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0; 
+    margin-bottom: 4px;
+    background-color: var(--SubUI-secondary) !important;
+    color: var(--SubUI-text-secondary) !important;
+    border: var(--SubUI-secondary-shadow) 4px solid;
+    box-shadow: 0 0 0 var(--SubUI-primary-shadow) !important;
+}
+
+.bottombar button.active {
+    background-color: var(--SubUI-primary) !important;
+    box-shadow: 0 0 0 var(--SubUI-primary-shadow) !important;
+    color: var(--SubUI-text) !important;
+    transform: translateY(0px) !important;
+    border: var(--SubUI-primary-shadow) 4px solid;
+    cursor: default;
+}
+
+.bottombar button.active:hover {
+    filter: brightness(1);
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--SubUI-bars);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    z-index: 9999;
+    border-bottom: var(--SubUI-bars-outline);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: env(safe-area-inset-top);
+}
+
+.topbarMain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    gap: 8px;
+    background-color: transparent;
+}
+
+.topbarStats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    padding-bottom: 20px;
+    text-align: center;
+    padding-top: 20px;
+    width: 100%;
+    height: 50px;
+    border-top: var(--SubUI-bars-outline);
+    background-color: transparent;
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 6px 12px;
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+    border-radius: 22px;
+}
+
+.statItem span {
+    font-size: 12px;
+    text-align: center;
+}
+
+.topbarStats button {
+    border-radius: 22px;
+    white-space: nowrap;
+}
+
+.topbarSide {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.topbarSide:last-child {
+    justify-content: flex-end;
+}
+
+.topbar h1 {
+    color: white;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+    flex: 2;
+}
+
+.topbar button {
+    height: 30px;
+    margin: 0;
+    padding: 0px 10px;
+}
+
+/* Tvá hlavní univerzální třída pro obsah */
+.content {
+    margin: 0;
+    box-sizing: border-box;
+    
+    /* Změna na Grid, který je pro sloupce mnohem lepší než Flexbox */
+    display: grid;
+    grid-template-columns: 1fr; /* Výchozí stav: 1 sloupec (ideální pro mobil) */
+    justify-items: center;      /* Vycentrování věcí na střed */
+    align-content: start;       /* Věci začínají nahoře, neroztahují se na celou výšku */
+    gap: 10px;
+    
+    height: auto;          
+    min-height: 100dvh;    
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: calc(110px + env(safe-area-inset-top));
+    padding-bottom: calc(90px + env(safe-area-inset-bottom));
+}
+
+/* POČÍTAČ / DESKTOP (obrazovky širší než 768px) */
+@media (min-width: 768px) {
+    /* Pokud v HTML zadáš data-columns="2", na PC budou 2 sloupce vedle sebe */
+    .content[data-columns="2"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 900px;  /* Aby to nebylo na PC obří roztáhlé */
+        margin: 0 auto;    /* Vycentrování celého bloku na střed PC obrazovky */
+    }
+
+    /* Pokud v HTML zadáš data-columns="3", na PC budou 3 sloupce vedle sebe */
+    .content[data-columns="3"] {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 1200px; /* O něco širší pro 3 sloupce */
+        margin: 0 auto;
+    }
+    
+    /* Pokud data-columns nezadáš vůbec, nebo dáš "1", 
+       zůstane to automaticky na PC v jednom sloupci pod sebou */
+    .content[data-columns="1"], .content:not([data-columns]) {
+        grid-template-columns: 1fr;
+        max-width: 500px; /* Příjemná šířka pro jeden sloupec na PC */
+        margin: 0 auto;
+    }
+}
+
+/* LANDSCAPE & DESKTOP SMART FIX FOR TOPBAR */
+@media (min-width: 768px) or (orientation: landscape) {
+    .topbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 5px;
+    }
+    .topbarMain, .topbarStats {
+        width: auto;
+        border: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 50px;
+    }
+    .content {
+        padding-top: calc(65px + env(safe-area-inset-top));
+    }
+}

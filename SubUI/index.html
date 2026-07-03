@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="keywords" content="ui, game, online, html5, free">
+    <title>SubUI</title>
+    <link rel="stylesheet" href="ui/ui.css">
+    <link rel="stylesheet" href="ui/static.css">
+
+    <link rel="icon" type="image/x-icon" href="img/icon.ico">
+    <link rel="apple-touch-icon" href="img/ios icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+
+</head>
+<body ontouchstart="">
+    <div class="topbar">
+        <div class="topbarMain">
+            <div class="topbarSide">
+                <button class="backButton">Back</button>
+            </div>
+
+            <h1></h1>
+
+            <div class="topbarSide">
+                <button onclick="showPage('page20')">Settings</button>
+            </div>
+        </div>
+
+        <div class="topbarStats">
+            <div class="statItem">
+                <span>💰</span> 1 500
+            </div>
+            <div class="statItem">
+                <span>💎</span> 25
+            </div>
+            <div class="statItem">
+                <span>⚡</span> 10/10
+            </div>
+        </div>
+    </div>
+
+    <div id="page1" class="hrefPage" data-topbar="Example" data-bottombar="show" data-url="Example">
+        <div class="content" data-columns="2">
+            <input type="text" placeholder="Search" class="fullWidth">
+
+            <div class="divWidth">
+                <button class="fullWidth">button</button> 
+                <button class="fullWidth disabled">Disabled button</button>
+            </div>
+            
+            <div class="widget">
+                <h2>Widget</h2>
+                <button onclick="showPage('page2')">widget button</button>
+            </div>
+
+            <p>
+                This is the best user interface, at least in HTML and CSS.
+            </p>
+
+            <div class="divWidth">
+                <button class="fullWidth">button</button> 
+                <button class="fullWidth disabled">Disabled button</button>
+                <button class="fullWidth disabled">Second button</button>
+            </div>
+            <p style="color: rgb(116, 0, 0); font-size: 25px; font-weight: 800;">WARNING! This is only demo! Images is old.</p>
+        </div>
+    </div>
+
+    <div id="page2" class="hrefPage" data-bottombar="show" data-topbar="Docs" data-url="Docs">
+        <div class="content" data-columns="3">
+            <div class="widget">
+                <h2>Page</h2>
+                <p>in index.html</p>
+                <img src="img/page.png" alt="">
+                <p style="font-size: 12px;">if u don't want top or bottom bar, replace the text in data as "none"</p>
+            </div>
+
+            <div class="widget">
+                <h2>Bottom Bar</h2>
+                <p>in index.html</p>
+                <img src="img/bottombar.png" alt="">
+            </div>
+
+            <div class="widget">
+                <h2>Go to some page</h2>
+                <p>in index.html</p>
+                <img src="img/onclick.png" alt="">
+                <p style="font-size: 12px;">use onclick="showPage('page2')"</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="page3" class="hrefPage" data-bottombar="show" data-topbar="Download" data-url="none">
+        <div class="content" data-columns="2">
+            <p>
+                Coming soon!
+            </p>
+        </div>
+    </div>
+
+    <div id="page20" class="hrefPage" data-bottombar="show" data-topbar="Settings">
+        <div class="content" data-columns="2">
+            <p>
+                with bars
+            </p>
+        </div>
+    </div>
+
+    <div class="bottombar">
+        <button onclick="showPage('page1')">Example</button>
+        <button onclick="showPage('page2')">Docs</button>
+        <button onclick="showPage('page3')">Download</button>
+    </div>
+
+    <script src="ui/scenes.js"></script>
+
+</body>
+</html>
